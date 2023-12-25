@@ -22,7 +22,7 @@ func main() {
 	service := services.NewService(repo)
 	handler := handlers.NewHandler(service)
 
-	server := server.New(viper.GetString("8080"), handler)
+	server := server.New(viper.GetString("8000"), handler)
 	if err := server.Run(); err != nil {
 		log.Fatal("ERROR:" + fmt.Sprint(err))
 	}
