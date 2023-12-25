@@ -1,0 +1,5 @@
+bind_addr = ":8080"
+log_level = "debug"
+
+[store]
+database_url = "host=v2250198.hosted-by-vdsina.ru port=1234 user=postgres password=07120712aA dbname=note_db sslmode=disable"
