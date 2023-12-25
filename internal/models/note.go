@@ -5,7 +5,7 @@ import (
 )
 
 type Note struct {
-	Id          int    `json:"name"`
+	Id          int    `json:"id"`
 	UserId      int    `json:"user_id"`
 	ListId      int    `json:"list_id"`
 	Title       string `json:"title"`

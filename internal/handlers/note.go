@@ -33,8 +33,10 @@ func (h *Handler) CreateNote(c *gin.Context) {
 func (h *Handler) GetAllNotes(c *gin.Context) {
 	result, err := h.Service.GetALlNotes()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, "CREATE NOTE ERROR(я где то накосячил):"+fmt.Sprint(err))
+		c.JSON(http.StatusInternalServerError, "GET ALL NOTE ERROR(я где то накосячил):"+fmt.Sprint(err))
 	}
-	response, err := json.Marshal(result)
-	c.JSON(http.StatusOK, response)
+	decoder := json.NewDecoder(c.Request.Body)
+	err = decoder.Decode(&result)
+	//response, err := json.Marshal(result)
+	c.JSON(http.StatusOK, result)
 }

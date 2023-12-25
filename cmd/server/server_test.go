@@ -57,3 +57,25 @@ func Test_CREATENOTE(t *testing.T) {
 	//assert.
 	//assert.Equal(t, rec.Body.String(), "Hello world")
 }
+
+func Test_GetAllNotes(t *testing.T) {
+	repo := store.NewRepository(store.New(store.NewConfig()))
+	service := services.NewService(repo)
+	handler := handlers.NewHandler(service)
+
+	server := New("8080", handler)
+
+	r := SetUpRouter()
+	r.GET("/note/get-all", server.h.GetAllNotes)
+
+	request, _ := http.NewRequest(http.MethodGet, "/note/get-all", bytes.NewBuffer(make([]byte, 0)))
+	rec := httptest.NewRecorder()
+	r.ServeHTTP(rec, request)
+
+	if rec.Code == http.StatusOK {
+		responseData, _ := io.ReadAll(rec.Body)
+		fmt.Println("TEST RESPONSE IS:" + string(responseData))
+	} else {
+		fmt.Println("TEST RESPONSE  ERROR IS:" + fmt.Sprint(rec.Body))
+	}
+}

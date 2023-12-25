@@ -46,12 +46,18 @@ func (r *Repository) GetAllNotes() ([]models.Note, error) {
 
 	getAllQuery := "SELECT * FROM notes_table"
 	var list []models.Note
-	result := db.QueryRow(getAllQuery)
-
-	if err := result.Scan(&list); err != nil {
-		db.Rollback()
-		return emptyList, err
+	result, err := db.Query(getAllQuery)
+	for result.Next() {
+		var note models.Note
+		if err := result.Scan(&note.Id, &note.UserId, &note.ListId,
+			&note.Title, &note.Description, &note.CreateAt, &note.UpdateAt); err != nil {
+			db.Rollback()
+			return emptyList, err
+		}
+		fmt.Println("NOTE IS:" + fmt.Sprint(note.Title) + " " + fmt.Sprint(note.Description))
+		list = append(list, note)
 	}
+
 	db.Commit()
 	return list, nil
 }
