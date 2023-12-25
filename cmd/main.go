@@ -9,6 +9,7 @@ import (
 	"noties/internal/services"
 	"noties/internal/store"
 
+	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
 
@@ -18,6 +19,7 @@ var (
 
 func main() {
 	flag.Parse()
+	gin.SetMode(gin.ReleaseMode)
 	repo := store.NewRepository(store.New(store.NewConfig()))
 	service := services.NewService(repo)
 	handler := handlers.NewHandler(service)
