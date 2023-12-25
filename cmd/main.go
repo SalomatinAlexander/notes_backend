@@ -10,7 +10,6 @@ import (
 	"noties/internal/store"
 
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 )
 
 var (
@@ -24,7 +23,7 @@ func main() {
 	service := services.NewService(repo)
 	handler := handlers.NewHandler(service)
 
-	server := server.New(viper.GetString("8000"), handler)
+	server := server.New("8080", handler)
 	if err := server.Run(); err != nil {
 		log.Fatal("ERROR:" + fmt.Sprint(err))
 	}
