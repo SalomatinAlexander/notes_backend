@@ -1,9 +1,12 @@
 package handlers
 
 import (
-	"noties/internal/services"
+	"github.com/SalomatinAlexander/noties/internal/services"
 
+	_ "github.com/SalomatinAlexander/noties/docs"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type Handler struct {
@@ -16,6 +19,7 @@ func NewHandler(s *services.Service) *Handler {
 
 func (h *Handler) InitRout() *gin.Engine {
 	router := gin.New()
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	notiesGroup := router.Group("/note")
 	{
 		notiesGroup.POST("/create-note", h.CreateNote)

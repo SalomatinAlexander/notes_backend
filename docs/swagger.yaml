@@ -35,7 +35,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: create new note
+      description: Создание новой заметки
       parameters:
       - description: Название
         in: body
@@ -45,7 +45,7 @@ paths:
           type: string
       - description: Описание
         in: body
-        name: descrition
+        name: description
         required: true
         schema:
           type: string
@@ -59,11 +59,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: int
+            type: string
         "500":
           description: Internal Server Error
           schema:
-            type: int
+            type: string
       summary: Create Note
       tags:
       - Notes
@@ -71,7 +71,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get all note
+      description: Метод для получения всех заметок
       produces:
       - application/json
       responses:
@@ -82,11 +82,11 @@ paths:
         "400":
           description: Bad Request
           schema:
-            type: int
+            type: string
         "500":
           description: Internal Server Error
           schema:
-            type: int
+            type: string
       summary: Get All
       tags:
       - Notes

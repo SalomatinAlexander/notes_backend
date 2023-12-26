@@ -8,11 +8,12 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
-	"noties/internal/handlers"
-	"noties/internal/models"
-	"noties/internal/services"
-	"noties/internal/store"
 	"testing"
+
+	"github.com/SalomatinAlexander/noties/internal/handlers"
+	"github.com/SalomatinAlexander/noties/internal/models"
+	"github.com/SalomatinAlexander/noties/internal/services"
+	"github.com/SalomatinAlexander/noties/internal/store"
 
 	"github.com/gin-gonic/gin"
 )

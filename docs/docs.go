@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/note/create-note": {
             "post": {
-                "description": "create new note",
+                "description": "Создание новой заметки",
                 "consumes": [
                     "application/json"
                 ],
@@ -40,7 +40,7 @@ const docTemplate = `{
                     },
                     {
                         "description": "Описание",
-                        "name": "descrition",
+                        "name": "description",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -58,13 +58,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "int"
+                            "type": "string"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "type": "int"
+                            "type": "string"
                         }
                     }
                 }
@@ -72,7 +72,7 @@ const docTemplate = `{
         },
         "/note/get-all": {
             "get": {
-                "description": "get all note",
+                "description": "Метод для получения всех заметок",
                 "consumes": [
                     "application/json"
                 ],
@@ -93,13 +93,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "type": "int"
+                            "type": "string"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "type": "int"
+                            "type": "string"
                         }
                     }
                 }

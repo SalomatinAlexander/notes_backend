@@ -1,4 +1,4 @@
-module noties
+module github.com/SalomatinAlexander/noties
 
 go 1.21.4
 

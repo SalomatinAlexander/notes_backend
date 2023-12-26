@@ -2,8 +2,9 @@ package server
 
 import (
 	"net/http"
-	"noties/internal/handlers"
 	"time"
+
+	"github.com/SalomatinAlexander/noties/internal/handlers"
 )
 
 type Server struct {

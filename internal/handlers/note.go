@@ -5,21 +5,22 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"noties/internal/models"
+
+	"github.com/SalomatinAlexander/noties/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 // @Summary      Create Note
-// @Description  create new note
+// @Description  Создание новой заметки
 // @Tags         Notes
 // @Accept       json
 // @Produce      json
 // @Param        title      body string  true  "Название"
-// @Param        descrition     body string true  "Описание"
+// @Param        description     body string true  "Описание"
 // @Success      200  {object}  models.CreateNoteResponse
-// @Failure      400  {int}  http.StatusBadRequest
-// @Failure      500  {int}  http.StatusInternalServerError
+// @Failure      400  {string}  Отправила хуйню, перепроверяй json
+// @Failure      500  {string}  я где то накосячил
 // @Router       /note/create-note [post]
 func (h *Handler) CreateNote(c *gin.Context) {
 	var noteFromRequest *models.NoteFromCreateRequest
@@ -42,13 +43,13 @@ func (h *Handler) CreateNote(c *gin.Context) {
 }
 
 // @Summary      Get All
-// @Description  get all note
+// @Description  Метод для получения всех заметок
 // @Tags         Notes
 // @Accept       json
 // @Produce      json
 // @Success      200  {object}  models.Note
-// @Failure      400  {int}  http.StatusBadRequest
-// @Failure      500  {int}  http.StatusInternalServerError
+// @Failure      400  {string}  Отправила хуйню, перепроверяй json
+// @Failure      500  {string}  я где то накосячил
 // @Router       /note/get-all [get]
 func (h *Handler) GetAllNotes(c *gin.Context) {
 	result, err := h.Service.GetALlNotes()

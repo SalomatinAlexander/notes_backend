@@ -3,7 +3,8 @@ package store
 import (
 	"fmt"
 	"log"
-	"noties/internal/models"
+
+	"github.com/SalomatinAlexander/noties/internal/models"
 )
 
 type Repository struct {

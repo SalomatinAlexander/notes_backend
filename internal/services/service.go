@@ -1,8 +1,8 @@
 package services
 
 import (
-	"noties/internal/models"
-	"noties/internal/store"
+	"github.com/SalomatinAlexander/noties/internal/models"
+	"github.com/SalomatinAlexander/noties/internal/store"
 )
 
 type Note interface {
