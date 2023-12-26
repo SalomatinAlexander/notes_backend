@@ -24,21 +24,23 @@ import (
 // @Router       /note/create-note [post]
 func (h *Handler) CreateNote(c *gin.Context) {
 	var noteFromRequest *models.NoteFromCreateRequest
+
 	if err := c.BindJSON(&noteFromRequest); err != nil {
-		log.Fatal("Create Note JSON ERROR:" + fmt.Sprint(err))
-		c.JSON(http.StatusBadRequest, "JSON PARSE ERROR(Отправила хуйню, перепроверяй json):"+fmt.Sprint(err))
+		log.Fatalln("Create Note JSON ERROR:" + fmt.Sprint(err))
+		c.JSON(http.StatusBadRequest,
+			gin.H{"errors": "JSON PARSE ERROR(Отправила хуйню, перепроверяй json):" + fmt.Sprint(err)})
 		return
 
 	}
 	result, err := h.Service.CreateNewNote(*noteFromRequest)
 	if err != nil {
-		log.Fatal("Create Note DB ERROR:" + fmt.Sprint(err))
-		c.JSON(http.StatusInternalServerError, "CREATE NOTE ERROR(я где то накосячил):"+fmt.Sprint(err))
+		log.Println("Create Note DB ERROR:" + fmt.Sprint(err))
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "CREATE NOTE ERROR(я где то накосячил):" + fmt.Sprint(err)})
 	}
+	log.Println("result:" + fmt.Sprint(result))
 
-	response, err := json.Marshal(models.CreateNoteResponse{Id: result})
-
-	c.JSON(http.StatusOK, response)
+	c.JSON(http.StatusOK, gin.H{"id": result})
 
 }
 
@@ -54,7 +56,10 @@ func (h *Handler) CreateNote(c *gin.Context) {
 func (h *Handler) GetAllNotes(c *gin.Context) {
 	result, err := h.Service.GetALlNotes()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, "GET ALL NOTE ERROR(я где то накосячил):"+fmt.Sprint(err))
+		log.Println("GET ALL NOTE ERROR" + fmt.Sprint(err))
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "GET ALL NOTE ERROR(я где то накосячил):" + fmt.Sprint(err),
+		})
 	}
 	decoder := json.NewDecoder(c.Request.Body)
 	err = decoder.Decode(&result)

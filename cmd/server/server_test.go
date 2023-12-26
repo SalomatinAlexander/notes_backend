@@ -50,9 +50,9 @@ func Test_CREATENOTE(t *testing.T) {
 
 	if rec.Code == http.StatusOK {
 		responseData, _ := io.ReadAll(rec.Body)
-		fmt.Println("TEST RESPONSE IS:" + fmt.Sprint(responseData))
+		fmt.Println("TEST RESPONSE IS:" + fmt.Sprint(string(responseData)))
 	} else if rec.Code == http.StatusInternalServerError || rec.Code == http.StatusBadRequest {
-		fmt.Println("TEST RESPONSE  ERROR IS:" + fmt.Sprint(rec.Body))
+		fmt.Println("TEST RESPONSE  ERROR IS:" + fmt.Sprint(rec.Code) + "," + fmt.Sprint(rec.Result()))
 	}
 
 	//assert.

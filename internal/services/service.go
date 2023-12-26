@@ -37,5 +37,6 @@ func (s *Service) GetALlNotes() ([]models.Note, error) {
 	if err != nil {
 		return make([]models.Note, 0), err
 	}
+
 	return result, nil
 }
