@@ -1,0 +1,93 @@
+basePath: v2250198.hosted-by-vdsina.ru/note
+definitions:
+  models.CreateNoteResponse:
+    properties:
+      id:
+        type: integer
+    required:
+    - id
+    type: object
+  models.Note:
+    properties:
+      create_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      list_id:
+        type: integer
+      title:
+        type: string
+      update_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+host: "8080"
+info:
+  contact: {}
+  description: Pet Project
+  title: Note Application
+  version: "1.0"
+paths:
+  /note/create-note:
+    post:
+      consumes:
+      - application/json
+      description: create new note
+      parameters:
+      - description: Название
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: Описание
+        in: body
+        name: descrition
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CreateNoteResponse'
+        "400":
+          description: Bad Request
+          schema:
+            type: int
+        "500":
+          description: Internal Server Error
+          schema:
+            type: int
+      summary: Create Note
+      tags:
+      - Notes
+  /note/get-all:
+    get:
+      consumes:
+      - application/json
+      description: get all note
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Note'
+        "400":
+          description: Bad Request
+          schema:
+            type: int
+        "500":
+          description: Internal Server Error
+          schema:
+            type: int
+      summary: Get All
+      tags:
+      - Notes
+swagger: "2.0"
